@@ -18,6 +18,9 @@ class Config(object):
     LINEAGE_BUILD_TARGETS_PATH = os.environ.get('LINEAGE_BUILD_TARGETS_PATH', 'lineage-build-targets')
     OFFICIAL_LINEAGE_BUILD_TARGETS_URL = os.environ.get('OFFICIAL_LINEAGE_BUILD_TARGETS_URL', 'https://raw.githubusercontent.com/LineageOS/hudson/master/lineage-build-targets')
 
+    WHITELISTED_DEVICES_URL = os.environ.get('WHITELISTED_DEVICES_URL', 'https://raw.githubusercontent.com/whatever/whatever/whitelist.json')
+    WHITELISTED_CHANNEL = os.environ.get('WHITELISTED_CHANNEL', 'test')
+
 
 class FlaskConfig(object):
     CACHE_DEFAULT_TIMEOUT = int(os.environ.get('CACHE_DEFAULT_TIMEOUT', '3600'))

@@ -20,6 +20,13 @@ def api_v1_index(device, romtype, incrementalversion):
 
     return get_build_types(device, romtype, after, version)
 
+@api.route('/whitelist/<string:device>/<string:romtype>/<string:incrementalversion>/<string:imei>')
+def api_v1_index_with_whitelist(device: str, romtype: str, incrementalversion: str, imei: str):
+    after = request.args.get('after')
+    version = request.args.get('version')
+
+    return get_build_types(device, romtype, after, version)
+
 
 @api.route('/types/<string:device>/')
 @extensions.cache.cached()

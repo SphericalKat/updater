@@ -112,6 +112,25 @@ def get_oems():
 
     return oems
 
+@extensions.cache.memoize()
+def get_whitelisted_devices():
+    try:
+        req = requests.get(Config.WHITELISTED_DEVICES_URL, timeout=60)
+        if req.status_code != 200:
+            raise UpstreamApiException('Unable to contact upstream API')
+        return json.loads(req.text)['devices']
+    except Exception as e:
+        print(e)
+        raise UpstreamApiException('Unable to contact upstream API')
+
+@extensions.cache.memoize()
+def get_whitelisted_build_types(device, romtype, after, version, imei):
+    if romtype == Config.WHITELISTED_CHANNEL:
+        whitelisted_devices = get_whitelisted_devices()
+        if imei not in whitelisted_devices:
+            return jsonify({'response': []})
+
+    return get_build_types(device, romtype, after, version)
 
 @extensions.cache.memoize()
 def get_build_types(device, romtype, after, version):

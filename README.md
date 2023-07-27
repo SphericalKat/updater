@@ -28,12 +28,30 @@ Development set up:
 Example API Calls:
 ---
 Obtaining rom list for a device:<br>
-`GET /api/v1/<device>/<romtype>/<incremental>?after=<utc_timestamp>&version=<14.1>` (incremental can be anything, it is currently unused)<br>
+`GET /api/v1/<device>/<romtype>/<incremental>/<imei>?after=<utc_timestamp>&version=<14.1>` (incremental can be anything, it is currently unused)<br>
 `<device>` - Name of device. Example: `d2vzw`<br>
 `<romtype>` - Type of rom. Example: `nightly`<br>
 `<incremental>` - Caller device's incremental ID (ro.build.incr). Can be anything. <br>
 `<after>` - Timestamp for current build on device. (optional) <br>
 `<romversion>` - Version of rom. Example: `14.1`(optional)<br>
+`<imei>` - Hashed (or not idc) IMEI of the device. NOT OPTIONAL
+
+### Structure of whitelisted devices json
+
+```json
+{
+    "devices": [
+        "1234567890"
+        "1234567890"
+        "1234567890"
+        "1234567890"
+        "1234567890"
+        "1234567890"
+        "1234567890"
+        "1234567890"
+    ]
+}
+```
 
 
 This project depends on a mirrorbits server (https://github.com/etix/mirrorbits) running our mirrorbits API (https://github.com/lineageos-infra/mirrorbits-api). Please see the README in that project for more information.
